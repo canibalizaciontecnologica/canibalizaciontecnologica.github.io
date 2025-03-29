@@ -1,3 +1,3 @@
-# RODANDO POR EL EJE CAFETERO
+# Canibalización Tecnológica
 
-Guía de turismo cinematográfico y audiovisual por la región cafetera
+Tech fácil para todos! 🚀 Trucos OS, IA y programación. ¡Domina tu día a día!

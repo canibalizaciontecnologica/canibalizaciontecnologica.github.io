@@ -92,7 +92,7 @@ function App({ routes }: { routes: RouteInterface[] }) {
   }, []);
 
   return (
-    <TagsLayout route={{ name: 'app', title: 'App - Rodando por el eje cafetero' } as RouteFromJson}>
+    <TagsLayout route={{ name: 'app', title: 'App' } as RouteFromJson}>
       {scrollPosition > topContentTable && <BackButton />}
       {routes.slice(0, visibleCount).map((route, index) => (
           <div key={index}>{route.element}</div>
