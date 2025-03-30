@@ -7,9 +7,13 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), tailwindcss()],
-    base: env.VITE_BASE_PATH || '/', //'/rodandoporeleje/',
+    base: env.VITE_BASE_PATH || '/',
     build: {
       target: 'es2019',
+    },
+    server: {
+      host: true,
+      allowedHosts: ['canibalizaciontecnologica.github.io'],
     },
   };
 });

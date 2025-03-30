@@ -1,107 +1,94 @@
-import { useEffect, useState, useRef } from 'react';
-import TagsLayout from './layouts/TagsLayout';
-import { RouteFromJson, RouteInterface } from './interfaces/RouteInterface';
-import BackButton from './components/common/BackButton';
+import { Canvas } from '@react-three/fiber';
+import { useLoader } from '@react-three/fiber';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { Suspense } from 'react';
+import { FaYoutube, FaTiktok, FaTwitter, FaGithub } from 'react-icons/fa';
 
-function App({ routes }: { routes: RouteInterface[] }) {
-  // Estado para controlar cuántos componentes (rutas) se renderizarán inicialmente
-  const [visibleCount, setVisibleCount] = useState<number>(4); // por ejemplo, 3 componentes
-  const sentinelRef = useRef<HTMLDivElement>(null);
-  const [scrollPosition, setScrollPosition] = useState<number>(0);
-  // Calcula la posición de la tabla de contenido al renderizar
-  const [topContentTable, setTopContentTable] = useState<number>(0);
+// Define una interfaz para las propiedades del modelo
+interface ModelProps {
+  url: string;
+}
 
-  useEffect(() => {
-    // Calcula la posición de la tabla de contenido al renderizar
-    const tablaElement = document.getElementById('tabla-de-contenido');
-    const top = tablaElement 
-      ? tablaElement.getBoundingClientRect().top + tablaElement.offsetHeight 
-      : 0;
-    setTopContentTable(top);
-    const app = document.getElementById('app');
-    // Listener para actualizar la posición de scroll en el estado
-    const handleScroll = (e: Event) => {
-      const target = e.target as HTMLElement;
-      setScrollPosition(target.scrollTop);
-    };
-    if (!app) return;
-    app.addEventListener('scroll', handleScroll);
-    return () => app.removeEventListener('scroll', handleScroll);
-  }, []);
+// Componente para cargar y mostrar el modelo GLB
+function Model({ url }: ModelProps) {
+  const gltf = useLoader(GLTFLoader, url);
+  return <primitive object={gltf.scene} dispose={null} />;
+}
 
-  // Efecto para detectar el sentinel (último elemento) y cargar más rutas.
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Si el sentinel es visible incrementamos el count
-        if (entries[0].isIntersecting) {
-          setVisibleCount((prev) => Math.min(prev + 3, routes.length));
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sentinelRef.current) {
-      observer.observe(sentinelRef.current);
-    }
-
-    return () => {
-      if (sentinelRef.current) {
-        observer.unobserve(sentinelRef.current);
-      }
-    };
-  }, [routes]);
-
-  const handleHash = () => {
-    const { hash } = window.location;
-    if (hash) {
-      if (visibleCount < routes.length) {
-        setVisibleCount(routes.length);
-      }
-      setTimeout(() => {
-        const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        console.log("element", element, element?.getBoundingClientRect().top, window.pageYOffset);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    }
-  };
-
-  const handleSectionChange = (e: Event) => {
-    e.preventDefault();
-    const customEvent = e as CustomEvent<{ section: string }>;
-    const { section } = customEvent.detail;
-    if (visibleCount < routes.length) {
-      setVisibleCount(routes.length);
-    }
-    setTimeout(() => {
-      window.history.replaceState(null, '', `#${section}`);
-      const element = document.getElementById(section);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
-  };
-
-  useEffect(() => {
-    handleHash();
-    window.addEventListener('sectionChange', handleSectionChange);
-    return () => window.removeEventListener('sectionChange', handleSectionChange);
-  }, []);
-
+function App() {
+  const rotationSpeed = 4;
   return (
-    <TagsLayout route={{ name: 'app', title: 'App' } as RouteFromJson}>
-      {scrollPosition > topContentTable && <BackButton />}
-      {routes.slice(0, visibleCount).map((route, index) => (
-          <div key={index}>{route.element}</div>
-        ))}
-      {routes.slice(visibleCount, routes.length).map((route, index) => (
-          <div key={`hidden-${index}`} className='absolute top-0 w-full opacity-0 -z-10 max-w-screen'>{route.element}</div>
-        ))}
-      {visibleCount < routes.length && <div ref={sentinelRef} style={{ height: '1px' }} />}
-    </TagsLayout>
+    <div className='relative flex items-center justify-center w-full h-full overflow-x-scroll bg-black'>
+      <div className='absolute z-10 flex flex-col items-center top-10'>
+        <img className='w-72' src="/assets/logos/logo.png" alt="Canibalización Tecnológica" />
+        <div className='flex flex-col items-center gap-4 mt-10'>
+          <a
+            href="https://www.youtube.com/@Canibalizaci%C3%B3nTecnol%C3%B3gica"
+            target="_blank"
+            rel="noopener noreferrer"
+            className='flex items-center gap-2 text-white'
+          >
+            <FaYoutube size={56} />
+          </a>
+          <a
+            href="https://www.tiktok.com/@canibalismo_tecnologico"
+            target="_blank"
+            rel="noopener noreferrer"
+            className='flex items-center gap-2 text-white'
+          >
+            <FaTiktok size={56} />
+          </a>
+          <a
+            href="https://x.com/CanibalTech"
+            target="_blank"
+            rel="noopener noreferrer"
+            className='flex items-center gap-2 text-white'
+          >
+            <FaTwitter size={56} />
+          </a>
+          <a
+            href="https://github.com/canibalizaciontecnologica"
+            target="_blank"
+            rel="noopener noreferrer"
+            className='flex items-center gap-2 text-white'
+          >
+            <FaGithub size={56} />
+          </a>
+        </div>
+        <span className='mt-10 text-xl text-white'>¡Siguenos!</span>
+      </div>
+      <div className='z-0 flex w-screen h-screen overflow-hidden'>
+        <div className='relative w-1/2'>
+          <Canvas>
+            <ambientLight intensity={1.2} />
+            <directionalLight position={[5, 5, 2]} intensity={1} />
+            <Suspense fallback={null}>
+              <Model url="/assets/models/jcastanodev.glb" />
+            </Suspense>
+            <OrbitControls autoRotate={true} autoRotateSpeed={rotationSpeed} />
+            <PerspectiveCamera makeDefault position={[20, 0, 0]} fov={5} />
+          </Canvas>
+          <div className='absolute left-0 right-0 flex justify-center bottom-10'>
+            <a href='https://jcastanodev.github.io/' target='_blank' rel='noopener noreferrer' className='px-4 py-2 text-2xl font-bold text-black bg-white rounded-xl'>JCASTANODEV</a>
+          </div>
+        </div>
+        <div className='relative w-1/2'>
+          <Canvas>
+            <ambientLight intensity={1.2} />
+            <directionalLight position={[2, 5, 2]} intensity={1} />
+            <Suspense fallback={null}>
+              <Model url="/assets/models/camiluds.glb" />
+            </Suspense>
+            <OrbitControls autoRotate={true} autoRotateSpeed={-rotationSpeed} />
+            <PerspectiveCamera makeDefault position={[3, 0, 5]} fov={17} />
+          </Canvas>
+          <div className='absolute left-0 right-0 flex justify-center bottom-10'>
+            <a href='https://www.instagram.com/_momca' target='_blank' rel='noopener noreferrer' className='px-4 py-2 text-2xl font-bold text-black bg-white rounded-xl'>CAMILUDS</a>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
