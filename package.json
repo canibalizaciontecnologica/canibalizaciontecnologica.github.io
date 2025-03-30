@@ -38,5 +38,19 @@
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"
+  },
+  "reactSnap": {
+    "inlineCss": false,
+    "skipThirdPartyRequests": true,
+    "recurseTimeout": 30000,
+    "minify": false,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "source": "dist",
+    "include": [
+      "/test"
+    ]
   }
 }

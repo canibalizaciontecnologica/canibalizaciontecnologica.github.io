@@ -19,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
             <App />
           </Suspense>
         } />
+        <Route path="/test" element={<Portada />} />
         <Route path="*" element={<RedirectTo404 />} />
       </Routes>
     </BrowserRouter>
