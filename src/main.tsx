@@ -24,7 +24,6 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/jcastanodev" element={<Profile profileData={JCASTANODEV_PROFILE} />} />
         <Route path="/camiluds" element={<Profile profileData={CAMILUDS_PROFILE} />} />
         <Route path="/test" element={<Portada />} />
-        <Route path="/test" element={<Portada />} />
         <Route path="*" element={<RedirectTo404 />} />
       </Routes>
     </BrowserRouter>
