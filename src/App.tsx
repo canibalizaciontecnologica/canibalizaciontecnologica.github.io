@@ -70,7 +70,7 @@ function App() {
             <PerspectiveCamera makeDefault position={[20, 0, 0]} fov={5} />
           </Canvas>
           <div className='absolute left-0 right-0 flex justify-center bottom-10'>
-            <a href='https://jcastanodev.github.io/' target='_blank' rel='noopener noreferrer' className='px-4 py-2 text-2xl font-bold text-black bg-white rounded-xl'>JCASTANODEV</a>
+            <a href='/jcastanodev' rel='noopener noreferrer' className='px-4 py-2 text-2xl font-bold text-black bg-white rounded-xl'>JCASTANODEV</a>
           </div>
         </div>
         <div className='relative w-1/2'>
@@ -84,7 +84,7 @@ function App() {
             <PerspectiveCamera makeDefault position={[3, 0, 5]} fov={17} />
           </Canvas>
           <div className='absolute left-0 right-0 flex justify-center bottom-10'>
-            <a href='https://www.instagram.com/_momca' target='_blank' rel='noopener noreferrer' className='px-4 py-2 text-2xl font-bold text-black bg-white rounded-xl'>CAMILUDS</a>
+            <a href='/camiluds' rel='noopener noreferrer' className='px-4 py-2 text-2xl font-bold text-black bg-white rounded-xl'>CAMILUDS</a>
           </div>
         </div>
       </div>
