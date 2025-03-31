@@ -56,3 +56,16 @@ export const CAMILUDS_PROFILE = {
   description: `Desarrollador full-stack con **7 años de experiencia** en soluciones tecnológicas innovadoras para sectores como banca y marketing digital.\n\n**Experto en Kotlin, JavaScript y Java,** liderando equipos en arquitecturas modernas y optimizando el rendimiento de aplicaciones. Busco nuevos desafíos en empresas disruptivas. Me apasiona aprender nuevas tecnologías y aplicarlas para resolver problemas reales.`, // Descripción única
   welcomeMessage: '¡Bienvenido a mi espacio digital!',
 };
+export const NATA_SEBAS_PROFILE = {
+  name: 'Nata + Sebas',
+  // Asegúrate que estas rutas sean accesibles (ej. desde la carpeta public)
+  profileModel: '/assets/models/nata_sebas.glb',
+  modelPosition: { x: 3, y: 8, z: 5 },
+};
+export const PET_PROFILE = {
+  name: 'Zoe',
+  username: 'camiluds',
+  subtitle:
+    'Desarrollador de Software - Kotlin | JavaScript | Java | React | Flutter | RoR | Laravel | Symfony',
+  profileModel: '/assets/models/camiluds.glb',
+};

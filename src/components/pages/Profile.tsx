@@ -32,14 +32,14 @@ interface SocialLinksData {
 // Define the structure of the data object, now using profileModel
 interface ProfileData {
   name: string;
-  username: string;
-  subtitle: string;
-  socialLinks: SocialLinksData;
+  username?: string;
+  subtitle?: string;
+  socialLinks?: SocialLinksData;
   profileModel: string;
   modelPosition: { x: number; y: number; z: number };
-  greeting: string;
-  description: string;
-  welcomeMessage: string;
+  greeting?: string;
+  description?: string;
+  welcomeMessage?: string;
 }
 
 // Define the props for the main Profile component
@@ -135,19 +135,19 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
                 >
                     {name}
                 </span>
-                <span
+                {username && <span
                     className="px-3 pb-1 text-2xl text-white bg-white rounded-b-lg bg-opacity-85 sm:text-3xl w-fit"
                     style={{ color: '#353230' }}
                 >
                     @{username}
-                </span>
+                </span>}
                 </div>
                  {/* === Fin Contenedor del Canvas Modificado === */}
               </div>
                {/* === End 3D Model Section === */}
 
               {/* Info Section - Adjusted margin top */}
-              <div className="w-full p-2 mt-16 text-lg text-black rounded-lg"> {/* mt-16 might need fine-tuning */}
+              {socialLinks && <div className="w-full p-2 mt-16 text-lg text-black rounded-lg"> {/* mt-16 might need fine-tuning */}
                 <div className="p-2 -mx-2 font-semibold text-center bg-gray-200 rounded-lg sm:text-left">
                    <span className='block text-base'>{subtitle}</span>
                 </div>
@@ -255,11 +255,11 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div>}
             </div>
 
             {/* Right Column: Introduction */}
-            <div className="w-full min-w-0 py-8 my-auto md:w-auto md:flex-1 md:pl-4 lg:pl-8">
+            {description && <div className="w-full min-w-0 py-8 my-auto md:w-auto md:flex-1 md:pl-4 lg:pl-8">
               <div className="flex mb-4">
                 <h2 className="text-3xl font-bold text-white">
                   {greeting}
@@ -275,7 +275,7 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
               <h3 className="mt-10 text-xl text-center text-gradient">
                 {welcomeMessage}
               </h3>
-            </div>
+            </div>}
           </div>
         </section>
       </main>
