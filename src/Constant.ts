@@ -62,6 +62,12 @@ export const NATA_SEBAS_PROFILE = {
   profileModel: '/assets/models/nata_sebas.glb',
   modelPosition: { x: 3, y: 8, z: 5 },
 };
+export const PABLO_PROFILE = {
+  name: 'Pablo',
+  // Asegúrate que estas rutas sean accesibles (ej. desde la carpeta public)
+  profileModel: '/assets/models/pablo.glb',
+  modelPosition: { x: 3, y: 8, z: 5 },
+};
 export const PET_PROFILE = {
   name: 'Zoe',
   username: 'camiluds',
