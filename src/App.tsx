@@ -21,7 +21,7 @@ function App() {
   return (
     <div className='relative flex items-center justify-center w-full h-full overflow-x-scroll bg-black'>
       <div className='absolute z-10 flex flex-col items-center top-10'>
-        <img className='w-72' src="/assets/logos/logo.png" alt="Canibalización Tecnológica" />
+        <img className='w-40 logo-animation' src="/assets/logos/logo.png" alt="Canibalización Tecnológica" />
         <div className='flex flex-col items-center gap-4 mt-10'>
           <a
             href="https://www.youtube.com/@Canibalizaci%C3%B3nTecnol%C3%B3gica"
