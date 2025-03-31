@@ -29,5 +29,5 @@ createRoot(document.getElementById('root')!).render(
         <Route path="*" element={<RedirectTo404 />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )
