@@ -144,15 +144,15 @@ const Header = () => {
                             {/* Profiles */}
                             <div className="flex flex-col md:flex-row justify-center items-center gap-14 mb-16">
                                 <div className="flex flex-col items-center gap-4">
-                                    <a href="/jcastanodev" className="hover:scale-110 transition-transform duration-300">
+                                    <Link to="/jcastanodev" onClick={() => setIsMenuOpen(false)} className="hover:scale-110 transition-transform duration-300">
                                         <img src="/assets/images/jcastanodev.png" alt="Jcastanodev" className="h-28 object-contain" />
-                                    </a>
+                                    </Link>
                                     <span className="px-5 py-2 text-sm font-black text-white bg-neutral-900 rounded-xl uppercase tracking-widest">JCASTANODEV</span>
                                 </div>
                                 <div className="flex flex-col items-center gap-4">
-                                    <a href="/camiluds" className="hover:scale-110 transition-transform duration-300">
+                                    <Link to="/camiluds" onClick={() => setIsMenuOpen(false)} className="hover:scale-110 transition-transform duration-300">
                                         <img src="/assets/images/camiluds logo.png" alt="Camiluds" className="h-28 object-contain" />
-                                    </a>
+                                    </Link>
                                     <span className="px-5 py-2 text-sm font-black text-white bg-neutral-900 rounded-xl uppercase tracking-widest">CAMILUDS</span>
                                 </div>
                             </div>
