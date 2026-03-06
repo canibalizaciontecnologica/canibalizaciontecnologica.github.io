@@ -61,12 +61,12 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
     welcomeMessage,
   } = profileData;
 
-    const renderFormattedText = (text: string): ReactElement => {
-        const formattedHtml = text
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\n/g, '<br />');
-        return <span dangerouslySetInnerHTML={{ __html: formattedHtml }} />;
-    };
+  const renderFormattedText = (text: string): ReactElement => {
+    const formattedHtml = text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br />');
+    return <span dangerouslySetInnerHTML={{ __html: formattedHtml }} />;
+  };
 
 
   const getCleanPhoneNumber = (phone: string): string => {
@@ -82,7 +82,7 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
   }
 
   return (
-    <div className="flex flex-col w-full min-h-screen overflow-x-auto overflow-y-auto bg-black min-w-80" style={{ minWidth: '310px' }}>
+    <div className="flex flex-col w-full min-h-screen overflow-x-auto overflow-y-auto bg-gray-500 min-w-80" style={{ minWidth: '310px' }}>
       {/* Main Content */}
       <main className="flex flex-1 w-full p-2">
         <section id="presentation" className="container w-full mx-auto my-auto max-w-7xl">
@@ -107,12 +107,12 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
                     <ambientLight intensity={0.8} />
                     <directionalLight position={[modelPosition.x, modelPosition.y, modelPosition.z]} intensity={1.2} castShadow />
                     {/* Suspense Fallback */}
-                    <Suspense fallback={ <Html center>
-                            <div className="flex items-center justify-center p-2 text-white bg-black bg-opacity-50 rounded">
-                                Loading 3D...
-                            </div>
-                        </Html>}>
-                        {Model({ url: profileModel })}
+                    <Suspense fallback={<Html center>
+                      <div className="flex items-center justify-center p-2 text-white bg-black bg-opacity-50 rounded">
+                        Loading 3D...
+                      </div>
+                    </Html>}>
+                      {Model({ url: profileModel })}
                     </Suspense>
                     {/* Controls and Camera */}
                     <OrbitControls
@@ -123,33 +123,33 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
                       minPolarAngle={Math.PI / 4}
                       maxPolarAngle={Math.PI / 1.8}
                       target={[0, 0, 0]}
-                     />
+                    />
                     <PerspectiveCamera makeDefault position={[10, 2, 0]} fov={25} />
                   </Canvas>
                 </div>
                 {/* --- Name/Username Overlay (se mantiene relativo al contenedor circular) --- */}
                 <div className="absolute left-0 right-0 flex flex-col items-center w-full text-center -bottom-10">
-                <span
+                  <span
                     className="px-3 py-1 text-3xl font-bold bg-white rounded-t-lg bg-opacity-85 sm:text-4xl w-fit"
                     style={{ color: '#353230' }}
-                >
+                  >
                     {name}
-                </span>
-                {username && <span
+                  </span>
+                  {username && <span
                     className="px-3 pb-1 text-2xl text-white bg-white rounded-b-lg bg-opacity-85 sm:text-3xl w-fit"
                     style={{ color: '#353230' }}
-                >
+                  >
                     @{username}
-                </span>}
+                  </span>}
                 </div>
-                 {/* === Fin Contenedor del Canvas Modificado === */}
+                {/* === Fin Contenedor del Canvas Modificado === */}
               </div>
-               {/* === End 3D Model Section === */}
+              {/* === End 3D Model Section === */}
 
               {/* Info Section - Adjusted margin top */}
               {socialLinks && <div className="w-full p-2 mt-16 text-lg text-black rounded-lg"> {/* mt-16 might need fine-tuning */}
                 <div className="p-2 -mx-2 font-semibold text-center bg-gray-200 rounded-lg sm:text-left">
-                   <span className='block text-base'>{subtitle}</span>
+                  <span className='block text-base'>{subtitle}</span>
                 </div>
                 <div className="mt-6">
                   <ul className="space-y-3">
@@ -198,8 +198,8 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
                         <FaGlobe className="mr-3 text-xl shrink-0" /> Web
                       </a>
                     </li>
-                     {/* Facebook */}
-                     <li className="mt-2">
+                    {/* Facebook */}
+                    <li className="mt-2">
                       <a
                         target="_blank"
                         href={socialLinks.facebook}
@@ -209,8 +209,8 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
                         <FaFacebookF className="mr-3 text-xl shrink-0" /> Facebook
                       </a>
                     </li>
-                     {/* Instagram */}
-                     <li className="mt-2">
+                    {/* Instagram */}
+                    <li className="mt-2">
                       <a
                         target="_blank"
                         href={socialLinks.instagram}
@@ -220,8 +220,8 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
                         <FaInstagram className="mr-3 text-xl shrink-0" /> Instagram
                       </a>
                     </li>
-                     {/* Twitter */}
-                     <li className="mt-2">
+                    {/* Twitter */}
+                    <li className="mt-2">
                       <a
                         target="_blank"
                         href={socialLinks.twitter}
@@ -231,8 +231,8 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
                         <FaTwitter className="mr-3 text-xl shrink-0" /> X (Twitter)
                       </a>
                     </li>
-                     {/* LinkedIn */}
-                     <li className="mt-2">
+                    {/* LinkedIn */}
+                    <li className="mt-2">
                       <a
                         target="_blank"
                         href={socialLinks.linkedin}
@@ -242,8 +242,8 @@ const Profile: FC<ProfileProps> = ({ profileData }) => {
                         <FaLinkedinIn className="mr-3 text-xl shrink-0" /> LinkedIn
                       </a>
                     </li>
-                     {/* GitHub */}
-                     <li className="mt-2">
+                    {/* GitHub */}
+                    <li className="mt-2">
                       <a
                         target="_blank"
                         href={socialLinks.github}
