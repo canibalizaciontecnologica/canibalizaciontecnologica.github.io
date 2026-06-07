@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       host: true,
-      allowedHosts: ['canibalizaciontecnologica.github.io'],
+      allowedHosts: ['adgoneoficial.github.io'],
     },
   };
 });

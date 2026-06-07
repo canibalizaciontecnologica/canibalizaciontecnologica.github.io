@@ -136,7 +136,7 @@ const Header = () => {
                                 <a href="https://x.com/CanibalTech" target="_blank" rel="noopener noreferrer" className="text-neutral-800 hover:scale-125 transition-transform">
                                     <FaTwitter size={32} />
                                 </a>
-                                <a href="https://github.com/canibalizaciontecnologica" target="_blank" rel="noopener noreferrer" className="text-neutral-800 hover:scale-125 transition-transform">
+                                <a href="https://github.com/adgoneoficial" target="_blank" rel="noopener noreferrer" className="text-neutral-800 hover:scale-125 transition-transform">
                                     <FaGithub size={36} />
                                 </a>
                             </div>
